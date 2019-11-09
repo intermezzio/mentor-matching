@@ -7,12 +7,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-  <!-- Custom styles for this template -->
-  <link href="css/landing-page.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="container">
@@ -23,12 +18,17 @@
              <!-- Background image for card set in CSS! -->
           </div>
           <div class="card-body">
-            <h5 class="card-title text-center">Register</h5>
+            <h5 class="card-title text-center">Create Profile</h5>
             <form class="form-signin">
               <div class="form-label-group">
-                <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
-                <label for="inputUserame">Username</label>
+                <input type="text" id="inputFirstName" class="form-control" placeholder="First name" required autofocus>
+                <label for="inputFirstName">First Name</label>
               </div>
+
+              <div class="form-label-group">
+                    <input type="text" id="inputLastName" class="form-control" placeholder="Last name" required autofocus>
+                    <label for="inputLastName">Last Name</label>
+                  </div>
 
               <div class="form-label-group">
                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
