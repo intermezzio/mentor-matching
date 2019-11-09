@@ -15,3 +15,14 @@
     background-color: #007bff;
 
   }  
+
+  .profilepic {
+    border-radius: 50%;
+    display: block;
+    max-width:202px;
+    max-height:202px;
+    min-width: 200px; 
+    min-height: 200px; 
+    width: auto;
+    height: auto;
+  }
