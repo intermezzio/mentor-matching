@@ -72,29 +72,29 @@ mentors=[{
 
 ]
 
-sortedList={}
-matchList={}
-keys=['ethnicity','gender','career','degree']
+def match(mentee,mentors):
+	sortedMentors=[]
+	keys=['ethnicity','gender','career','degree','location']
+	matchList=[]
+	for mentor in mentors:
+		simIndex=0
+		if mentor==mentee.keys()[0]:
+			continue
+		for key in keys:
+			if (key=='location' and mentor['location']['state']==mentee['location']['state']):
+				simIndex+=1	
+			elif (mentor[key]==mentee[key]):
+				simIndex+=1
 
-for mentor in mentors:
-	simIndex=0
-	if mentor==mentee.keys()[0]:
-		continue
-	for key in keys:
-		if (mentor[key]==mentee[key]):
-			simIndex+=1
+		matchList.append([simIndex,mentor])
+	print (matchList)
+	matchList.sort(reverse=True, key=lambda x: x[0])
 
-	matchList[simIndex]=mentor['firstname']
+	for match in matchList:
+		sortedMentors.append(match[1])
 
-print (matchList)
-
-sk= sorted(matchList,reverse=True)
-print(sk)
-for k in sk:
-	sortedList[k]=matchList[k]
-print(sortedList)
-	
+	return sortedMentors
 
 
-			
+print(match(mentee,mentors))			
 
