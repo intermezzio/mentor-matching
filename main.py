@@ -4,8 +4,10 @@ import numpy as np
 import pandas as pd
 import requests
 from ManDB import ManDB
+from match import Match
 
 user_db = ManDB()
+matcher = Match()
 
 from flask import Flask, flash, redirect, render_template, request, session, abort, url_for, Response, send_file, jsonify
 # from flask.ext.session import Session
@@ -28,20 +30,14 @@ def alsoIndexPage():
 @app.route("/auth.html", methods=["GET", "POST"])
 def authenticate():
 	req = request.form
-	print(req)
 	try:
-		print(1)
 		email = req["email"]
-		print(2)
 		password = req["password"]
-		print(3)
 	except KeyError as e:
 		error_msg = "Please input a valid email and password"
 		print(error_msg)
 		print(e)
 		return redirect("/signin.html")
-	print(email)
-	print(password)
 	try:
 		email_addr = user_db.login(email, password)
 		print("email:", email_addr)
@@ -57,7 +53,6 @@ def authenticate():
 
 @app.route("/signin.html", methods=["GET", "POST"])
 def loginAuth(error_msg=""):
-	print("start signin")
 	if request.method == "POST":
 		req = request.form
 
@@ -79,8 +74,7 @@ def loginAuth(error_msg=""):
 			session["email"] = email_addr
 
 			return render_template("dashboardmatching.html")
-	else:
-		print('ha!')
+	
 	return render_template("signin.html", error_msg=error_msg)
 
 @app.route("/signout.html")
@@ -107,7 +101,37 @@ def retProfile():
 	"""
 	create static site with this boi
 	"""
+	email_addr = session["email"]
+	print(email_addr)
+	data_stuffs = user_db.accessData(email_addr)
+	print(data_stuffs)
+	return jsonify(data_stuffs)
+
+@app.route("/Profile.html")
+def editProfile():
+	if session["email"]:
+		info = user_db.accessData(session["email"])
+
+		return render_template("Profile.html", **info)
+	else:
+		print('ha!')
+		return redirect("/")
+
+@app.route("/updateprofile.html", methods=["GET", "POST"])
+def updateProfile():
+	print(1)
 	req = request.form
+	print(session["email"])
+	print(3)
+	potentialmentors = matcher.match(user_db.accessData(session["email"]), user_db.loginCol.find({"mentoravailability": True}))
+	print(5)
+	new_req = dict(req)
+	new_req["potentialmentors"] = [p["email"] for p in potentialmentors]
+	print(7)
+	user_db.updateData(**new_req)
+
+	return render_template("dashboardmatching.html")
+
 
 @app.route("/registerpage.html")
 def registerKELLY():
