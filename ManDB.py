@@ -64,7 +64,7 @@ class ManDB:
 		
 		raise Exception("This user does not exist")
 
-	def updateData(self, password=None, firstname=None, lastname=None, email=None, bio=None, school=None, birthdate=None, hobbies=None, company=None, ethnicity=None, gender=None, position=None, degree=None, city=None, state=None, ismentor=None, ismentee=None, mentoravailability=None, menteeavailability=None):
+	def updateData(self, password=None, firstname=None, lastname=None, email=None, bio=None, school=None, birthdate=None, hobbies=None, company=None, ethnicity=None, gender=None, position=None, degree=None, city=None, state=None, ismentor=None, ismentee=None, mentoravailability=None, menteeavailability=None, pendingmentors=None,pendingmentees=None, mentors=None, mentees=None,potentialmentors=None):
 		args = locals()
 		
 		self.accessData(email)

@@ -11,9 +11,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
+    <script
+              src="https://code.jquery.com/jquery-3.4.1.min.js"
+              integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+              crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             crossorigin="anonymous"></script>
@@ -63,7 +64,7 @@
       <div class="row py-5 px-4" style= "margin: auto">
          <div class="row bg-white container rounded-lg overflow-hidden shadow" style= "margin: auto; size:90%">
             <div class="px-4 pt-0 pb-4 " style="background-color:rgb(35, 165, 40); margin: auto;">
-               <form role="form" id="profile_form">
+               <form role="form" id="profile_form" action="/updateprofile.html" method="POST">
                   <div class="media align-items-end profile-header" style="width:1000px; margin:auto">
                      <div class="profile mr-3">
                         <img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="..." width="180" class="rounded mb-2 img-thumbnail">
@@ -99,54 +100,54 @@
             <div class="py-4 form-group container py-4 p-4 bg-light rounded shadow-sm">
             <h5 class="mb-3">Biography</h5>
             <div class = "col-12">
-            <input name="bio" id="bio" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
+            <input name="bio" id="bio" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="{{bio}}">
             </div>
             </div>
             <div class="py-4 form-group container py-4 p-4 bg-light rounded shadow-sm">
                     <h5 class="mb-3">Interests</h5>
                     <div class = "col-12">
-                    <input id="hobbies" name="hobbies" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="tennis">
+                    <input id="hobbies" name="hobbies" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="{{hobbies}}">
                 </div>
             </div>
             <div class="form-group container py-4 p-4 bg-light rounded shadow-sm">
             <h5 class="mb-3">Career experience</h5>
             <div class = "col-12">
             <p style="padding:2px">Company name:</p>
-            <input id="company" name="company" class="form-control font-italic"  type="text" value="Company Name">
+            <input id="company" name="company" class="form-control font-italic"  type="text" value="{{company}}">
             <p style="padding:2px; padding-top:16px">Position:</p>
-            <input id="position" name="position" class="form-control font-italic"  type="text" value="Program manager">
+            <input id="position" name="position" class="form-control font-italic"  type="text" value="{{position}}">
             </div>
             </div>
             <div class="form-group container py-4 p-4 bg-light rounded shadow-sm" style="padding:auto">
             <h5 class="mb-3">Education</h5>
             <div class = "col-12">
             <p style="padding:2px">School name:</p>
-            <input id="school" name="school" class="form-control font-italic"  type="text" value="School Name">
+            <input id="school" name="school" class="form-control font-italic"  type="text" value="{{school}}">
             <p style="padding:2px; padding-top:16px">Degree:</p>
-            <input id="degree" name="degree" class="form-control font-italic"  type="text" value="Degree">
+            <input id="degree" name="degree" class="form-control font-italic"  type="text" value="{{degree}}">
             </div>
             </div>
             <div class="row" style="width:100%;margin:auto">
             <div class="form-group container py-4 p-4 bg-light rounded shadow-sm col" style="margin-right:10px">
             <h5 class="mb-3">Brithday</h5>
-            <input id="birthday" name="birthday" class="form-control font-italic" type="text" value="2018-07-22">
+            <input id="birthdate" name="birthdate" class="form-control font-italic" type="text" value="{{birthdate}}">
             </div>
             <div class="form-group container py-4 p-4 bg-light rounded shadow-sm col">
             <h5 class="mb-3">Gender</h5>
-            <input id="gender" name="gender" class="form-control font-italic" type="text" value="female">
+            <input id="gender" name="gender" class="form-control font-italic" type="text" value="{{gender}}">
             </div>
             </div>
             <div class="py-4 form-group container py-4 p-4 bg-light rounded shadow-sm">
             <h5 class="mb-3">Race</h5>
             <div class = "col-12">
-            <input id="ethnicity" name="ethnicity" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="East Asian">
+            <input id="ethnicity" name="ethnicity" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="{{ethnicity}}">
             </div>
             </div>
             
             <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-            <input id="button_save" type="button" class="btn btn-primary" value="Save Changes">
+            <input id="button_save" type="submit" class="btn btn-primary" value="Save Changes">
             </div>
             </div>
             </div> 
@@ -154,46 +155,46 @@
          </div>
       </div>
       <script>
-         $(function(){
-             $.get("/profile.json").then(function(response){
-                $("#firstname").html(response.firstname)
-                $("#lastname").html(response.lastname)
+         // $(function(){
+         //     $.get("/profile.json").then(function(response){
+         //        $("#firstname").html(response.firstname)
+         //        $("#lastname").html(response.lastname)
 
-            if(response.mentoravailability){
-                $("#mentoravailability").prop("checked", true);
+         //    if(response.mentoravailability){
+         //        $("#mentoravailability").prop("checked", true);
 
-            } else {
-                $("#mentoravailability").prop("checked", false);
-            }
+         //    } else {
+         //        $("#mentoravailability").prop("checked", false);
+         //    }
             
-            if(response.menteeavailability){
-                $("#menteeavailability").prop("checked", true);
+         //    if(response.menteeavailability){
+         //        $("#menteeavailability").prop("checked", true);
                 
-            } else {
-                $("#menteeavailability").prop("checked", false);
-            }
+         //    } else {
+         //        $("#menteeavailability").prop("checked", false);
+         //    }
 
-            $("#bio").val(response.bio)
-            $("#company").val(response.company)
-            $("#position").val(response.position)
-            $("#school").val(response.school)
-            $("#degree").val(response.degree)
-            $("#hobbies").val(response.hobbies)
-            $("#gender").val(response.gender)
-            $("#birthday").val(response.birthday)
-            $("#ethnicity").val(response.ethnicity)
-             })
-         })
+         //    $("#bio").val(response.bio)
+         //    $("#company").val(response.company)
+         //    $("#position").val(response.position)
+         //    $("#school").val(response.school)
+         //    $("#degree").val(response.degree)
+         //    $("#hobbies").val(response.hobbies)
+         //    $("#gender").val(response.gender)
+         //    $("#birthday").val(response.birthday)
+         //    $("#ethnicity").val(response.ethnicity)
+         //     })
+         // })
          
 
-         $("#button_save").on("click", function(){
+         // $("#button_save").on("click", function(){
 
-             var formdata =   $("#profile_form").serialize();
-             console.info(formdata)
+         //     var formdata =   $("#profile_form").serialize();
+         //     console.info(formdata)
 
-             $.post("/profile.json", formdata).then(function(response){
+         //     // $.post("/profile.json", formdata).then(function(response){
                 
-            })
+         //    })
          
          
 
