@@ -26,8 +26,8 @@
   }
 
 body {
-  background-color: #74EBD5;
-  background-image: url("https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjM27mov9_lAhWlmeAKHYOZB0MQjRx6BAgBEAQ&url=%2Furl%3Fsa%3Di%26source%3Dimages%26cd%3D%26ved%3D%26url%3Dhttps%253A%252F%252Fweheartit.com%252Fentry%252F255567587%26psig%3DAOvVaw0uQeoLfjHUCxVCl2iFhtPZ%26ust%3D1573470151203397&psig=AOvVaw0uQeoLfjHUCxVCl2iFhtPZ&ust=1573470151203397")
+  /*background-color: #74EBD5;*/
+  background: url("https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjM27mov9_lAhWlmeAKHYOZB0MQjRx6BAgBEAQ&url=%2Furl%3Fsa%3Di%26source%3Dimages%26cd%3D%26ved%3D%26url%3Dhttps%253A%252F%252Fweheartit.com%252Fentry%252F255567587%26psig%3DAOvVaw0uQeoLfjHUCxVCl2iFhtPZ%26ust%3D1573470151203397&psig=AOvVaw0uQeoLfjHUCxVCl2iFhtPZ&ust=1573470151203397")
   /* background-image: linear-gradient(90deg, rgb(223, 223, 223) 100%, rgb(223, 223, 223) 100%); */
 
   min-height: 100vh;

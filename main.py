@@ -155,9 +155,13 @@ def getProfile(email):
 	info = user_db.accessData(email)
 	return jsonify(info)
 
-@app.route("/profile/str:profname/info.json")
-def accessProfileJSON(profname):
-	pass
+@app.route("/messaging.html")
+def messaging():
+	return render_template("messaging.html")
+
+# @app.route("/profile/str:profname/info.json")
+# def accessProfileJSON(profname):
+# 	pass
 
 if __name__ == "__main__":
 	app.run(debug=True, port=2727)
