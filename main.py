@@ -4,22 +4,17 @@ import numpy as np
 import pandas as pd
 import requests
 from ManDB import ManDB
-# from timeit import timeit
-# from time import sleep
-# from bs4 import BeautifulSoup
-# from selenium import webdriver
-# from selenium.webdriver.common.keys import Keys
-# from xml.etree import ElementTree
-# from multiprocessing import Process
-# from sympy import solveset, Eq, symbols
-import datetime
 
 user_db = ManDB()
 
-from flask import Flask, flash, redirect, render_template, request, session, abort, url_for, Response, send_file
+from flask import Flask, flash, redirect, render_template, request, session, abort, url_for, Response, send_file, jsonify
+from flask.ext.session import Session
+
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '124ed87acnjkhna87ed'
+SESSION_TYPE="redis"
+Session(app)
 
 @app.route("/", methods=["GET", "POST"])
 def indexPage():
@@ -31,7 +26,7 @@ def alsoIndexPage():
 	return render_template("index.html")
 
 @app.route("/login.html", methods=["GET", "POST"])
-def loginAuth():
+def loginAuth(error_msg=""):
 	if request.method == "POST":
 		req = request.form
 
@@ -39,8 +34,20 @@ def loginAuth():
 			email, password = req["email"], req["password"]
 		except KeyError:
 			error_msg = "Please input a valid email and password"
-			return redirect("smth.html", error_msg=error_msg)
-	
+			return redirect("/login.html", error_msg=error_msg)
+
+		try:
+			email_addr = user_db.login()
+		except Exception as e:
+			error_msg = e
+			return redirect("/login.html", error_msg=error_msg)
+
+		if(email_addr):
+			session["email"] = email_addr
+
+	return render_template("login.html", error_msg=error_msg)
+
+# def
 
 @app.route("/profile.json", methods=["POST"])
 def retProfile():
