@@ -117,6 +117,14 @@ def editProfile():
 		print('ha!')
 		return redirect("/")
 
+@app.route("/dashboardmentor.html")
+def dashboardMentor():
+	return render_template("/dashboardmentor.html")
+
+@app.route("/dashboardmentee.html")
+def dashboardMentee():
+	return render_template("/dashboardmentee.html")
+
 @app.route("/updateprofile.html", methods=["GET", "POST"])
 def updateProfile():
 	print(1)
@@ -127,20 +135,25 @@ def updateProfile():
 	print(5)
 	new_req = dict(req)
 	new_req["potentialmentors"] = [p["email"] for p in potentialmentors]
+	new_req["email"] = session["email"]
 	print(7)
 	user_db.updateData(**new_req)
 
 	return render_template("dashboardmatching.html")
 
+@app.route("/otherprofile.html", methods=["GET", "POST"])
+def otherProfile():
+	return render_template("otherprofile.html")
 
 @app.route("/registerpage.html")
 def registerKELLY():
 	return render_template("registerpage.html")
 
 
-@app.route("/profile/str:profname")
-def getProfile(profname):
-	pass
+@app.route("/profile/<string:email>", methods=["GET", "POST"])
+def getProfile(email):
+	info = user_db.accessData(email)
+	return jsonify(info)
 
 @app.route("/profile/str:profname/info.json")
 def accessProfileJSON(profname):
