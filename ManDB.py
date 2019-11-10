@@ -1,6 +1,4 @@
 import pymongo
-import urllib
-import copy
 
 class ManDB:
 	"""
@@ -9,7 +7,7 @@ class ManDB:
 	Logging In
 
 	"""
-	login_private_key = open("keys/login-db.txt", "r").read().strip()
+	# login_private_key = open("keys/login-db.txt", "r").read().strip()
 
 	def __init__(self, user="andrew", password=None):
 		self.client = pymongo.MongoClient(f"mongodb+srv://{user}:{password or open('keys/loginpass.txt').read().strip()}@cluster0-codlf.mongodb.net/test?retryWrites=true&w=majority")
@@ -43,7 +41,12 @@ class ManDB:
 			"ismentor": ismentor,
 			"ismentee": ismentee,
 			"mentoravailability": mentoravailability,
-			"menteeavailability": menteeavailability
+			"menteeavailability": menteeavailability,
+			"pendingmentors": list(),
+			"pendingmentees": list(),
+			"mentors": list(),
+			"mentees": list(),
+			"potentialmentors": list()
 		}
 		self.loginCol.insert_one(userProfile)
 
@@ -84,6 +87,34 @@ class ManDB:
 		self.accessData(email)
 		
 		self.loginCol.delete_one({"email": email})
+
+		return 0
+
+	def addPending(self, email, pendingmentors=list(), pendingmentees=list()):
+		get_user = self.accessData(email)
+
+		get_user["pendingmentors"] += pendingmentors
+		get_user["pendingmentees"] += pendingmentees
+
+		self.loginCol.update_one(
+			{"email": email},
+			{"$set": {
+				"pendingmentors": get_user["pendingmentors"],
+				"pendingmentees": get_user["pendingmentees"]
+			}}
+		)
+
+		return 0
+
+	def getMentors(self, email, potentialmentors=list()):
+		self.get_user(email)
+
+		self.loginCol.update_one(
+			{"email": email},
+			{"$set": {
+				"potentialmentors": potentialmentors
+			}}
+		)
 
 		return 0
 
