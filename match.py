@@ -3,7 +3,7 @@ class Match:
 
 	def match(self,mentee,mentors):
 		sortedMentors=[]
-		keys=['ethnicity','gender','career','degree','state']
+		keys=['ethnicity','gender','position','degree','state']
 		matchList=[]
 		for mentor in mentors:
 			simIndex=0

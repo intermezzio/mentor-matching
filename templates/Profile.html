@@ -164,35 +164,40 @@
          </div>
       </div>
       <script>
-         // $(function(){
-         //     $.get("/profile.json").then(function(response){
-         //        $("#firstname").html(response.firstname)
-         //        $("#lastname").html(response.lastname)
+        $(document).ready(function() {
+            $.get("/profile.json").then(function(response){
+            console.log("RESPONSE");
+            console.log(response)
+            $("#firstname").html(response.firstname)
+            $("#lastname").html(response.lastname)
 
-         //    if(response.mentoravailability){
-         //        $("#mentoravailability").prop("checked", true);
+            if(response.mentoravailability){
+                $("#mentoravailability").prop("checked", true);
 
-         //    } else {
-         //        $("#mentoravailability").prop("checked", false);
-         //    }
+            } else {
+                $("#mentoravailability").prop("checked", false);
+            }
             
-         //    if(response.menteeavailability){
-         //        $("#menteeavailability").prop("checked", true);
+            if(response.menteeavailability){
+                $("#menteeavailability").prop("checked", true);
                 
-         //    } else {
-         //        $("#menteeavailability").prop("checked", false);
-         //    }
+            } else {
+                $("#menteeavailability").prop("checked", false);
+            }
 
-         //    $("#bio").val(response.bio)
-         //    $("#company").val(response.company)
-         //    $("#position").val(response.position)
-         //    $("#school").val(response.school)
-         //    $("#degree").val(response.degree)
-         //    $("#hobbies").val(response.hobbies)
-         //    $("#gender").val(response.gender)
-         //    $("#birthday").val(response.birthday)
-         //    $("#ethnicity").val(response.ethnicity)
-         //     })
+            $("#bio").val(response.bio)
+            $("#company").val(response.company)
+            $("#position").val(response.position)
+            $("#school").val(response.school)
+            $("#degree").val(response.degree)
+            $("#hobbies").val(response.hobbies)
+            $("#gender").val(response.gender)
+            $("#birthday").val(response.birthday)
+            $("#ethnicity").val(response.ethnicity)
+             })
+        });
+         // $(function(){
+         
          // })
          
 

@@ -17,12 +17,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -44,12 +39,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -71,12 +61,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -98,12 +83,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -125,12 +105,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -152,12 +127,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -179,12 +149,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -206,12 +171,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -233,12 +193,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		},
 		{
@@ -260,12 +215,7 @@ mentorList = [{
 			"ismentor": True,
 			"ismentee": False,
 			"mentoravailability": True,
-			"menteeavailability": False,
-			"pendingmentors": list(),
-			"pendingmentees": list(),
-			"mentors": list(),
-			"mentees": list(),
-			"potentialmentors": list()
+			"menteeavailability": False
 
 		}
 		]

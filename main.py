@@ -5,6 +5,7 @@ import pandas as pd
 import requests
 from ManDB import ManDB
 from match import Match
+import json
 
 user_db = ManDB()
 matcher = Match()
@@ -96,7 +97,7 @@ def registerMe():
 def dashboardMatching():
 	return render_template("dashboardmatching.html")
 
-@app.route("/profile.json", methods=["POST"])
+@app.route("/profile.json", methods=["GET"])
 def retProfile():
 	"""
 	create static site with this boi
@@ -105,6 +106,7 @@ def retProfile():
 	print(email_addr)
 	data_stuffs = user_db.accessData(email_addr)
 	print(data_stuffs)
+	del data_stuffs["_id"]
 	return jsonify(data_stuffs)
 
 @app.route("/Profile.html")
@@ -125,21 +127,54 @@ def dashboardMentor():
 def dashboardMentee():
 	return render_template("/dashboardmentee.html")
 
+
+
+@app.route("/pendingmentors.json")
+def pendingMentors():
+	print(23)
+	resp = list(user_db.loginCol.find({"pendingmentors": True}))
+	for x in resp:
+		del x["_id"]
+	print(resp)
+	return Response(json.dumps(resp),  mimetype='application/json')
+
+@app.route("/potentialmentors.json")
+def potentialMentors():
+	print(23)
+	resp = list(user_db.loginCol.find({"mentoravailability": True}))
+	for x in resp:
+		del x["_id"]
+	print(resp)
+	return Response(json.dumps(resp),  mimetype='application/json')
+
+@app.route("/potentialmentees.json")
+def potentialMentees():
+	print(23)
+	resp = list(user_db.loginCol.find({"potentialmentees": True}))
+	for x in resp:
+		del x["_id"]
+	print(resp)
+	return Response(json.dumps(resp),  mimetype='application/json')
+
+
+
 @app.route("/updateprofile.html", methods=["GET", "POST"])
 def updateProfile():
 	print(1)
 	req = request.form
 	print(session["email"])
 	print(3)
-	potentialmentors = matcher.match(user_db.accessData(session["email"]), user_db.loginCol.find({"mentoravailability": True}))
+	potentialmentors = matcher.match(user_db.accessData(session["email"]),user_db.loginCol.find({"mentoravailability": True}))[:6]
+	print(potentialmentors)
 	print(5)
 	new_req = dict(req)
-	new_req["potentialmentors"] = [p["email"] for p in potentialmentors]
+	new_req["potentialmentors"] = potentialmentors
+	print(new_req["potentialmentors"])
 	new_req["email"] = session["email"]
 	print(7)
 	user_db.updateData(**new_req)
 
-	return render_template("dashboardmatching.html")
+	return redirect("dashboardmatching.html")
 
 @app.route("/otherprofile.html", methods=["GET", "POST"])
 def otherProfile():
@@ -152,8 +187,8 @@ def registerKELLY():
 
 @app.route("/profile/<string:email>", methods=["GET", "POST"])
 def getProfile(email):
-	info = user_db.accessData(email)
-	return jsonify(info)
+	info = user_db.accessData(email.strip())
+	return render_template("otherprofile.html")
 
 @app.route("/messaging.html")
 def messaging():
