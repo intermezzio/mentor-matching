@@ -18,12 +18,12 @@ Session(app)
 
 @app.route("/", methods=["GET", "POST"])
 def indexPage():
-	return render_template("index.html")
+	return render_template("landingpage.html")
 
 
 @app.route("/index.html", methods=["GET", "POST"])
 def alsoIndexPage():
-	return render_template("index.html")
+	return render_template("landingpage.html")
 
 @app.route("/login.html", methods=["GET", "POST"])
 def loginAuth(error_msg=""):
@@ -42,12 +42,16 @@ def loginAuth(error_msg=""):
 			error_msg = e
 			return redirect("/login.html", error_msg=error_msg)
 
-		if(email_addr):
+		if email_addr:
 			session["email"] = email_addr
+
+			return render_template("dashboardmatching.html")
 
 	return render_template("login.html", error_msg=error_msg)
 
-# def
+@app.route("dashboardmatching.html")
+def dashboardMatching():
+	return render_template("dashboardmatching.html")
 
 @app.route("/profile.json", methods=["POST"])
 def retProfile():
