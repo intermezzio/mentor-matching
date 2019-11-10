@@ -12,8 +12,8 @@ class ManDB:
 	login_private_key = open("keys/login-db.txt", "r").read().strip()
 
 	def __init__(self, user="andrew", password=None):
-		# self.client = pymongo.MongoClient(f"mongodb+srv://{user}:{password or open('keys/loginpass.txt').read()}@cluster0-codlf.mongodb.net/test?retryWrites=true&w=majority")
-		self.client = pymongo.MongoClient()
+		self.client = pymongo.MongoClient(f"mongodb+srv://{user}:{password or open('keys/loginpass.txt').read().strip()}@cluster0-codlf.mongodb.net/test?retryWrites=true&w=majority")
+		# self.client = pymongo.MongoClient()
 		self.user = user
 		self.loginDB = self.client["users"]
 		# self.loginDB.authenticate('amascillaro@gmail.com', open('keys/personal_mongodb_pass.txt').read())
