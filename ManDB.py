@@ -16,7 +16,7 @@ class ManDB:
 		self.loginDB = self.client["users"]
 		self.loginCol = self.loginDB["login-info"]
 	
-	def createUser(self, username, password, firstname, lastname, email, bio, school, age, hobbies, company, ethnicity, gender, position, degree, city, state, ismentor, ismentee):
+	def createUser(self, username, password, firstname, lastname, email, bio, school, age, hobbies, company, ethnicity, gender, position, degree, city, state, ismentor, ismentee, mentoravailability, menteeavailability):
 		if self.loginCol.find({"credentials": {"email": email}}):
 			raise Exception("That email address is already taken")
 		userProfile = {
@@ -40,12 +40,24 @@ class ManDB:
 				"state": state
 			} 
 			"ismentor": ismentor,
-			"ismentee": ismentee
+			"ismentee": ismentee,
+			"mentoravailability": mentoravailability,
+			"menteeavailability": menteeavailability
 		}
 		self.client.insert_one(userProfile)
 
+	def login(self, email, password):
+		get_user = self.loginCol.find({"credentials": {"email": email, "password": password}})
+		if get_user:
+			return email
+		else:
+			raise Exception("Invalid logon attempt")
 
-
-	def login(self, username, password):
-		pass
-
+	def accessData(self, email):
+		get_user = self.loginCol.find_one({"credentials": {"email": email}})
+		if get_user:
+			return get_user
+		else:
+			raise Exception("Who are you, really?")
+ 
+		return get_user
