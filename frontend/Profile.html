@@ -66,16 +66,17 @@
                   <div class="media align-items-end profile-header" style="width:1000px; margin:auto">
                      <div class="profile mr-3">
                         <img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="..." width="180" class="rounded mb-2 img-thumbnail">
-                        <h6>Upload a different photo...</h6>
+                     
                      </div>
-                     <div class="media-body mb-5 text-white">
+                     <div class="media-body text-white">
                         <h3>
                            <span id="firstname" name="firstname" class="mt-0 mb-0">Manuella </span>
                            <span id="lastname" name="lastname" class="mt-0 mb-0">Tarly</span>
                         </h3>
                      </div>
-                     <input id="menteeavailability" name="menteeavailability" type="button" class="btn darkbutton col-md-2" value="Accepting mentees" style="margin-right:10px">
-                     <input id="mentoravailability" name="mentoravailability"type="button" class="btn darkbutton col-md-2" value="Looking for mentors" style="margin-right:10px">
+
+                     <input id="menteeavailability" name="menteeavailability" type="checkbox" class="btn darkbutton col-md-2" value="Accepting mentees" style="margin-right:10px">
+                     <input id="mentoravailability" name="mentoravailability"type="checkbox" class="btn darkbutton col-md-2" value="Looking for mentors" style="margin-right:10px">
                   </div>
             </div>
             <div class="py-4 px-4" style="margin:auto;width:100%">
@@ -85,40 +86,47 @@
             <input name="bio" id="bio" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
             </div>
             </div>
+            <div class="py-4 form-group container py-4 p-4 bg-light rounded shadow-sm">
+                    <h5 class="mb-3">Intersts</h5>
+                    <div class = "col-12">
+                    <input id="hobbies" name="hobbies" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="tennis">
+                </div>
+            </div>
             <div class="form-group container py-4 p-4 bg-light rounded shadow-sm">
             <h5 class="mb-3">Career experience</h5>
             <div class = "col-12">
             <p style="padding:2px">Company name:</p>
-            <input class="form-control font-italic"  type="text" value="Company Name">
+            <input id="company" name="company" class="form-control font-italic"  type="text" value="Company Name">
             <p style="padding:2px; padding-top:16px">Position:</p>
-            <input class="form-control font-italic"  type="text" value="Program manager">
+            <input id="position" name="position" class="form-control font-italic"  type="text" value="Program manager">
             </div>
             </div>
             <div class="form-group container py-4 p-4 bg-light rounded shadow-sm" style="padding:auto">
             <h5 class="mb-3">Education</h5>
             <div class = "col-12">
             <p style="padding:2px">School name:</p>
-            <input class="form-control font-italic"  type="text" value="Company Name">
+            <input id="school" name="school" class="form-control font-italic"  type="text" value="Company Name">
             <p style="padding:2px; padding-top:16px">Degree:</p>
-            <input class="form-control font-italic"  type="text" value="Program manager">
+            <input id="degree" name="degree" class="form-control font-italic"  type="text" value="Program manager">
             </div>
             </div>
             <div class="row" style="width:100%;margin:auto">
             <div class="form-group container py-4 p-4 bg-light rounded shadow-sm col" style="margin-right:10px">
             <h5 class="mb-3">Brithday</h5>
-            <input class="form-control font-italic" type="text" value="2018-07-22">
+            <input id="birthday" name="birthday" class="form-control font-italic" type="text" value="2018-07-22">
             </div>
             <div class="form-group container py-4 p-4 bg-light rounded shadow-sm col">
             <h5 class="mb-3">Gender</h5>
-            <input class="form-control font-italic" type="text" value="female">
+            <input id="gender" name="gender" class="form-control font-italic" type="text" value="female">
             </div>
             </div>
             <div class="py-4 form-group container py-4 p-4 bg-light rounded shadow-sm">
-            <h5 class="mb-3">Ethnicity</h5>
+            <h5 class="mb-3">Race</h5>
             <div class = "col-12">
-            <input class="form-control font-italic"  style="padding-left: 20px"  type="text" value="East Asian">
+            <input id="ethnicity" name="ethnicity" class="form-control font-italic"  style="padding-left: 20px"  type="text" value="East Asian">
             </div>
             </div>
+            
             <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
@@ -130,11 +138,44 @@
          </div>
       </div>
       <script>
+         $(function(){
+             $.get("/profile.json").then(function(response){
+                $("#firstname").html(response.firstname)
+                $("#lastname").html(response.lastname)
+
+            if(response.mentoravailability){
+                $("#mentoravailability").prop("checked", true);
+
+            } else {
+                $("#mentoravailability").prop("checked", false);
+            }
+            
+            if(response.menteeavailability){
+                $("#menteeavailability").prop("checked", true);
+                
+            } else {
+                $("#menteeavailability").prop("checked", false);
+            }
+
+            $("#bio").val(response.bio)
+            $("#company").val(response.company)
+            $("#position").val(response.position)
+            $("#school").val(response.school)
+            $("#degree").val(response.degree)
+            $("#hobbies").val(response.hobbies)
+            $("#gender").val(response.gender)
+            $("#birthday").val(response.birthday)
+            $("#ethnicity").val(response.ethnicity)
+             })
+         })
+         
          $("#button_save").on("click", function(){
            
              var formdata =   $("#profile_form").serialize();
              console.info(formdata)
-             $.post()
+             $.post("/profile.json", formdata).then(function(response){
+                
+            })
          
          
          });

@@ -83,7 +83,7 @@
 
         <div class="col-lg-9">
 
-            <div class="row mr-3 ml-2 ">
+            <div id="mentorlist" class="row mr-3 ml-2 ">
 
                 <div class="col-lg-4 mt-5 mb-3">
                     <div class="card h-90">
@@ -100,51 +100,7 @@
 
                     </div>
                 </div>
-
-                <div class="col-lg-4 mt-5 mb-3">
-                    <div class="card h-90">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Item Four</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                                aspernssatur!</p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-4 mt-5 mb-3">
-                    <div class="card h-90">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Item Five</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing !
-                                Lorem ipsum dolor sit akkkkkkkmet.</p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-4 mt-3 mb-5">
-                    <div class="card h-90">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Item Six</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                                aspernatur!</p>
-                        </div>
-
-                    </div>
-                </div>
+                        
 
             </div>
             <!-- /.row -->
@@ -157,53 +113,40 @@
 
 </div>
 <!-- /.container -->
+<script>
+    function makechunk(data){
+        var code = ""
 
-<!-- Footer -->
-<footer class="footer bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-                <ul class="list-inline mb-2">
-                    <li class="list-inline-item">
-                        <a href="#">About</a>
-                    </li>
-                    <li class="list-inline-item">&sdot;</li>
-                    <li class="list-inline-item">
-                        <a href="#">Contact</a>
-                    </li>
-                    <li class="list-inline-item">&sdot;</li>
-                    <li class="list-inline-item">
-                        <a href="#">Terms of Use</a>
-                    </li>
-                    <li class="list-inline-item">&sdot;</li>
-                    <li class="list-inline-item">
-                        <a href="#">Privacy Policy</a>
-                    </li>
-                </ul>
-                <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
-            </div>
-            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item mr-3">
-                        <a href="#">
-                            <i class="fab fa-facebook fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item mr-3">
-                        <a href="#">
-                            <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-instagram fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
+        code+= '<div class="col-lg-4 mt-3 mb-5">'
+            code+= '<div class="card h-90">'
+                code+= '<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>'
+                        code+= '<div class="card-body">'
+                            code+= '<h4 class="card-title">'
+                                code+= '<a href="/profile/'+data.email+'">'+data.firstname+' '+data.lastname+'</a>'
+                            code+= '</h4>'
+                            code+= '<h5>'+data.degree+'</h5>'
+                            code+= '<p class="card-text">'+data.bio+'</p>'
+                        code+= '</div>'
+
+                    code+= '</div>'
+                code+= '</div>'
+        return code;
+
+
+    }
+
+    $.get("/dashboardmentor.json").then(function(response){
+        var htmlcode = ""; 
+        for(var i = 0, l = response.length; i<l; i++){
+            
+            htmlcode += makechunk(response[i]);
+        }
+        $("#mentorlist").html(htmlcode)
+
+    })
+</script>
+
+
 
 </body>
 
