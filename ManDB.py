@@ -65,7 +65,7 @@ class ManDB:
 	def updateData(self, password=None, firstname=None, lastname=None, email=None, bio=None, school=None, birthdate=None, hobbies=None, company=None, ethnicity=None, gender=None, position=None, degree=None, city=None, state=None, ismentor=None, ismentee=None, mentoravailability=None, menteeavailability=None):
 		args = locals()
 		
-		accessData(email)
+		self.accessData(email)
 		
 		newargs = dict()
 		for key, value in args.items():
@@ -79,7 +79,14 @@ class ManDB:
 		))
 
 		return 0
- 
+
+	def deleteUser(self, email):
+		self.accessData(email)
+		
+		self.loginCol.delete_one({"email": email})
+
+		return 0
+
 
 if __name__ == "__main__":
 	m = ManDB()
