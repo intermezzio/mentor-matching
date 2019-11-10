@@ -17,10 +17,9 @@ class ManDB:
 		# self.loginDB.authenticate('amascillaro@gmail.com', open('keys/personal_mongodb_pass.txt').read())
 		self.loginCol = self.loginDB["login-info"]
 	
-	def createUser(self, password, firstname, lastname, email, bio="", school=None, birthdate=0, hobbies=list(), company=None, ethnicity=None, gender=None, position="Lead Systems Engineer", degree="", city="Princeton", state="NJ", ismentor=False, ismentee=False, mentoravailability=False, menteeavailability=False):
-		emailSearchCursor = self.loginCol.find({"email": email})
-		foundUsers = [user for user in emailSearchCursor]
-		if foundUsers:
+	def createUser(self, password, firstname, lastname, email, bio="", school=None, birthdate=0, hobbies=list(), company=None, ethnicity=None, gender=None, position=None, degree="", city="Princeton", state="NJ", ismentor=False, ismentee=False, mentoravailability=False, menteeavailability=False):
+		emailAcct = self.loginCol.find_one({"email": email})
+		if emailAcct:
 			raise Exception("That email address is already taken")
 		userProfile = {
 			"password": password,
