@@ -91,7 +91,7 @@ def match(mentee,mentors):
 	matchList.sort(reverse=True, key=lambda x: x[0])
 
 	for match in matchList:
-		sortedMentors.append(match[1])
+		sortedMentors.append(match[1]['email'])
 
 	return sortedMentors
 
