@@ -19,7 +19,7 @@
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Create Profile</h5>
-            <form class="form-signin">
+            <form id="formregister" class="form-signin">
               <div class="form-label-group">
                 <input type="text" id="inputFirstName" class="form-control" placeholder="First name" required autofocus>
                 <label for="inputFirstName">First Name</label>
@@ -51,7 +51,7 @@
                 <label for="inputConfirmPassword">Confirm password</label>
               </div>
 
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+              <button id="buttonregister" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
               <hr class="my-4">
               <button id="buttonsignin" class="btn btn-lg btn-google btn-block text-uppercase"><i class="fab fa-google mr-2"></i>Sign in</button>
               
@@ -79,6 +79,14 @@
 
       }    
       
+    })
+
+    $("#buttonregister").on("click", function(){
+      var signin = $("#formregister").serialize();
+      alert("hello")
+      $.post("/register.json", signin)
+     
+
     })
   </script>
 </body>

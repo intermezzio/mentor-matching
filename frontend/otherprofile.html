@@ -61,15 +61,17 @@
                            <img src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg" alt="..." width="180" class="rounded mb-2 img-thumbnail">
                         </div>
                         <div class="media-body text-white">
-                           <h3>
-                              <span id="firstname" name="firstname" class="mt-0 mb-0">Manuella </span>
-                              <span id="lastname" name="lastname" class="mt-0 mb-0">Tarly</span>
+                           <h3 style="margin-bottom:0px">
+                              <span id="firstname" name="firstname" class="mt-0 ">Manuella </span>
+                              <span id="lastname" name="lastname" class="mt-0 ">Tarly</span>
                            </h3>
                         </div>
-                        <span id="menteeavailability" name="menteeavailability"  class="col-2" value="Accepting mentees" style="margin-right:10px"> Accepting
+                        <span id="menteeavailability" name="menteeavailability"  value="Accepting mentees" style="margin-right:20px; color:white"> Accepting mentees
                         </span>
-                        <span id="mentoravailability" name="mentoravailability" class="col-2" value="Looking for mentors" style="margin-right:10px">adsfadsf
+                        <span id="mentoravailability" name="mentoravailability" value="Looking for mentors" style="margin-right:20px; color:white">Looking for mentors
                      </span>
+                     <a class="btn-primary rounded" style="background:rgb(35, 35, 35); color:white; padding-left:10px; padding-right:10px" href="messaging.html">Message</a>
+
                         </div>
                </div>
                <div class="py-4 px-4" style="margin:auto;width:100%">
@@ -77,7 +79,7 @@
                <h5 class="mb-3">Biography</h5>
                <div class = "col-12">
                <span name="bio" id="bio"  style="padding-left: 20px">
-            adsfadsa    
+                This is a biography! I might write about my background or story. Any interesting facts that isn't covered already in this profile.  
             </span>
             </div>
                </div>
@@ -145,7 +147,7 @@
             } else {
                 $("#mentoravailability").html("Not looking for a mentor")
             }
-            
+
             if(response.menteeavailability){
                 $("#menteeavailability").html("Accepting mentees")
                 
