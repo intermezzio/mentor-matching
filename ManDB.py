@@ -1,5 +1,6 @@
 import pymongo
 import urllib
+import copy
 
 class ManDB:
 	"""
@@ -11,10 +12,11 @@ class ManDB:
 	login_private_key = open("keys/login-db.txt", "r").read().strip()
 
 	def __init__(self, user="andrew", password=None):
-		self.client = pymongo.MongoClient(f"mongodb+srv://{user}:{password or open('keys/loginpass.txt').read()}@cluster0-codlf.mongodb.net/test?retryWrites=true&w=majority")
+		# self.client = pymongo.MongoClient(f"mongodb+srv://{user}:{password or open('keys/loginpass.txt').read()}@cluster0-codlf.mongodb.net/test?retryWrites=true&w=majority")
+		self.client = pymongo.MongoClient()
 		self.user = user
 		self.loginDB = self.client["users"]
-		self.loginDB.authenticate('amascillaro@gmail.com', open('keys/personal_mongodb_pass.txt').read())
+		# self.loginDB.authenticate('amascillaro@gmail.com', open('keys/personal_mongodb_pass.txt').read())
 		self.loginCol = self.loginDB["login-info"]
 	
 	def createUser(self, password, firstname, lastname, email, bio="", school=None, birthdate=0, hobbies=list(), company=None, ethnicity=None, gender=None, position="Lead Systems Engineer", degree="", city="Princeton", state="NJ", ismentor=False, ismentee=False, mentoravailability=False, menteeavailability=False):
@@ -36,32 +38,48 @@ class ManDB:
 			"gender": gender,
 			"position": position,
 			"degree": degree,
-			"location": {
-				"city": city,
-				"state": state
-			},
+			"city": city,
+			"state": state,
 			"ismentor": ismentor,
 			"ismentee": ismentee,
 			"mentoravailability": mentoravailability,
 			"menteeavailability": menteeavailability
 		}
-		self.client.insert_one(userProfile)
+		self.loginCol.insert_one(userProfile)
 
 	def login(self, email, password):
-		get_user = self.loginCol.find({"credentials": {"email": email, "password": password}})
+		get_user = self.loginCol.find_one({"email": email, "password": password})
+		
 		if get_user:
 			return email
-		else:
-			raise Exception("Invalid logon attempt")
+		
+		raise Exception("Invalid logon attempt")
 
 	def accessData(self, email):
-		get_user = self.loginCol.find_one({"credentials": {"email": email}})
+		get_user = self.loginCol.find_one({"email": email})
 		if get_user:
 			return get_user
-		else:
-			raise Exception("Who are you, really?")
+		
+		raise Exception("This user does not exist")
+
+	def updateData(self, password=None, firstname=None, lastname=None, email=None, bio=None, school=None, birthdate=None, hobbies=None, company=None, ethnicity=None, gender=None, position=None, degree=None, city=None, state=None, ismentor=None, ismentee=None, mentoravailability=None, menteeavailability=None):
+		args = locals()
+		
+		accessData(email)
+		
+		newargs = dict()
+		for key, value in args.items():
+			if value is not None and key is not "self":
+				newargs[key] = value
+		print(newargs)
+		
+		print(self.loginCol.update_one(
+			{"email": email},
+			{"$set": newargs}
+		))
+
+		return 0
  
-		return get_user
 
 if __name__ == "__main__":
 	m = ManDB()
@@ -74,6 +92,8 @@ if __name__ == "__main__":
 		'hobbies':'Baseball',
 		'company': 'Microsoft',
 
+		'bio': 'I have been a software engineer for many years now, and I love it!',
+		'birthdate': "02/12/1985",
 		'ethnicity': 'African American',
 		'gender': 'Female',
 		'position': 'Software Engineer',
@@ -81,6 +101,8 @@ if __name__ == "__main__":
 		'city': 'New York City',
 		'state': 'New York',
 		'ismentor': False,
-		'ismentee': True
+		'ismentee': True,
+		'mentoravailability': False,
+		'menteeavailability': True
 	}
 
