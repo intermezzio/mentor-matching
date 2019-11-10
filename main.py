@@ -33,10 +33,13 @@ def loginAuth():
 		req = request.form
 
 		try:
-			username, password = req["username"], req["password"]
+			email, password = req["email"], req["password"]
 		except KeyError:
-			error_msg = "Please input a username and password"
+			error_msg = "Please input a valid email and password"
 			return redirect("smth.html", error_msg=error_msg)
+		
+		pass
+		
 
 if __name__ == "__main__":
 	app.run(debug=True, port=2727)
