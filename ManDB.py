@@ -16,14 +16,12 @@ class ManDB:
 		self.loginDB = self.client["users"]
 		self.loginCol = self.loginDB["login-info"]
 	
-	def createUser(self, username, password, firstname, lastname, email, bio, school, age, hobbies, company, ethnicity, gender, position, degree, city, state, ismentor, ismentee, mentoravailability, menteeavailability):
-		if self.loginCol.find({"credentials": {"email": email}}):
+	def createUser(self, username, password, firstname, lastname, email="e@mail.addr", bio="", school=None, birthdate=25, hobbies=list(), company=None, ethnicity=None, gender=None, position="Lead Systems Engineer", degree="", city="Princeton", state="NJ", ismentor=False, ismentee=False, mentoravailability=False, menteeavailability=False):
+		if self.loginCol.find({"email": email}):
 			raise Exception("That email address is already taken")
 		userProfile = {
-			"credentials": {
-				"username": username,
-				"password": password
-			},
+			"username": username,
+			"password": password,
 			"firstname": firstname,
 			"lastname": lastname,
 			"email": email,
@@ -34,11 +32,11 @@ class ManDB:
 			"ethnicity": ethnicity,
 			"gender": gender,
 			"position": position,
-			"degree": degree,
+			"degree": ";".split(degree),
 			"location": {
 				"city": city,
 				"state": state
-			} 
+			},
 			"ismentor": ismentor,
 			"ismentee": ismentee,
 			"mentoravailability": mentoravailability,
