@@ -52,16 +52,34 @@
               </div>
 
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-         
-              <a class="d-block text-center mt-2 small" href="#">Sign In</a>
               <hr class="my-4">
-              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>
-              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>
+              <button id="buttonsignin" class="btn btn-lg btn-google btn-block text-uppercase"><i class="fab fa-google mr-2"></i>Sign in</button>
+              
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    $.urlParam = function(name){
+	  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	  return results[1] || 0;
+    }
+
+    $("#buttonsignin").on("click", function(){
+      window.location.href = "signin.html"
+    })
+
+    $(function(){
+      var e = $.urlParam("email")
+
+      if(e){
+        $("#inputEmail").val(e)
+
+      }    
+      
+    })
+  </script>
 </body>
 </html>

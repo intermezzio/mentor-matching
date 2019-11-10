@@ -44,10 +44,19 @@ def loginAuth():
 
 @app.route("/profile.json", methods=["POST"])
 def retProfile():
+	"""
+	create static site with this boi
+	"""
 	req = request.form
 
 
-		
+@app.route("/profile/str:profname")
+def getProfile(profname):
+	pass
+
+@app.route("/profile/str:profname/info.json")
+def accessProfileJSON(profname):
+	pass
 
 if __name__ == "__main__":
 	app.run(debug=True, port=2727)
