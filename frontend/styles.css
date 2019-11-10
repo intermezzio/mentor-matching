@@ -138,7 +138,7 @@
   
 body {
   background-color: #007bff;
-  background: linear-gradient(to right, rgb(134, 196, 236), rgb(134, 196, 236));
+  background: linear-gradient(to right,rgb(223, 223, 223) 100%, rgb(223, 223, 223) 100%);
 }
 
   
