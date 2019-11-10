@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="landingpage.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/landingpage.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
@@ -28,7 +28,7 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/landing-page.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/landing-page.min.css')}}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/shop-homepage.css" rel="stylesheet">
 </head>
@@ -83,31 +83,28 @@
 
         <div class="col-lg-9">
 
-            <div id="mentorlist" class="row mr-3 ml-2 ">
+            <div id="menteelist" class="row mr-3 ml-2 ">
 
-                <div class="col-lg-4 mt-5 mb-3">
-                    <div class="card h-90">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="otherprofile.html">Susan</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsumsss s dolor sit amet, consectetur adipisicing elit. Amet
-                                numquam
-                                aspernar!</p>
+                    <div class="col-lg-4 mt-5 mb-3">
+                            <div class="card h-90">
+                                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="#">Susan Boyle</a>
+                                    </h4>
+                                    <h5>Biology</h5>
+                                    <p class="card-text">Lorem ipsumsss s dolor sit amet, consectetur adipisicing elit. Amet
+                                        numquam
+                                        aspernar!</p>
+                                </div>
+        
+                            </div>
                         </div>
-
-                    </div>
-                </div>
                         
 
+      
+
             </div>
-            
-            
-    
-                </div>
-                
             <!-- /.row -->
 
         </div>
@@ -119,43 +116,42 @@
 </div>
 <!-- /.container -->
 <script>
-    function makechunk(data){
-        var code = ""
-
-        code+= '<div class="col-lg-4 mt-3 mb-5">'
-            code+= '<div class="card h-90">'
-                code+= '<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>'
-                        code+= '<div class="card-body">'
-                            code+= '<h4 class="card-title">'
-                                code+= '<a href="/profile/'+data.email+'">'+data.firstname+' '+data.lastname+'</a>'
-                            code+= '</h4>'
-                            code+= '<h5>'+data.degree+'</h5>'
-                            code+= '<p class="card-text">'+data.bio+'</p>'
+        function makechunk(data){
+            var code = ""
+    
+            code+= '<div class="col-lg-4 mt-3 mb-5">'
+                code+= '<div class="card h-90">'
+                    code+= '<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>'
+                            code+= '<div class="card-body">'
+                                code+= '<h4 class="card-title">'
+                                    code+= '<a href="/profile/'+data.email+'">'+data.firstname+' '+data.lastname+'</a>'
+                                code+= '</h4>'
+                                code+= '<h5>'+data.degree+'</h5>'
+                                code+= '<p class="card-text">'+data.bio+'</p>'
+                            code+= '</div>'
+    
                         code+= '</div>'
-
                     code+= '</div>'
-                code+= '</div>'
-        return code;
-
-
-    }
-
-    $.get("/dashboardmentor.json").then(function(response){
-        var htmlcode = ""; 
-        for(var i = 0, l = response.length; i<l; i++){
-            
-            htmlcode += makechunk(response[i]);
+            return code;
+    
+    
         }
-        $("#mentorlist").html(htmlcode)
+    
+        $.get("/dashboardmentee.json").then(function(response){
+            var htmlcode = ""; 
+            for(var i = 0, l = response.length; i<l; i++){
+                
+                htmlcode += makechunk(response[i]);
+            }
+            $("#menteelist").html(htmlcode)
+    
+        })
+    </script>
 
-    })
-
-
-</script>
 
 
 
 </body>
 
-</html>>
+</html>
 
